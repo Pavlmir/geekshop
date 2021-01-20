@@ -1,2 +1,2 @@
 # geekshop
-GeekBrains - Основы Django Framework
+GeekBrains - Основы Django Framework, создание интернет магазина.
