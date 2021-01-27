@@ -7,7 +7,7 @@
 				<a href="index.html" class="logo"></a>
 				<ul class="menu">
 					<li><a href="{% url 'index' %}">домой</a></li>
-					<li><a href="{% url 'products' %}" class="active">продукты</a></li>
+					<li><a href="{% url 'products:index' %}" class="active">продукты</a></li>
 					<li><a href="{% url 'contact' %}">контакты</a></li>
 
 				</ul>
@@ -77,9 +77,10 @@
 				<div class="related-products clearfix">
 					{% for product in products %}
 					    <div class="block">
-							<a href="#"><img src="{{product.img}}" alt="">
+							<a href="#"><img src="/media/{{ product.image }}" alt="">
 								<div class="text">
 									<img src="{% static 'img/icon-hover.png' %}" alt="img">
+									<h3>{{ product.category.name }}</h3>
 									<h4>{{product.name}}</h4>
 									<p> цена {{product.price}} руб. </p>
 									<p>{{product.description}}</p>
