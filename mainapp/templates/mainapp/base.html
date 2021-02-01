@@ -3,46 +3,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>{{ title|title }}</title>
+    <meta charset="utf-8">
+    <title>{{ title|title }}</title>
     <!-- Bootstrap core CSS -->
     <link href="{% static 'fonts/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
     <link href="{% static 'style.css' %}" rel="stylesheet">
 </head>
 <body>
-	<div class="container">
-        {% block content %} {% endblock %}
+<div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'products:index' %}">Каталог <i class="fas fa-shopping-bag"></i>
+            </a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'auth:profile' %}">{{ user.username }}
+                <i class="fas fa-user-circle"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'auth:logout' %}">Выйти <i class="fas fa-sign-out-alt"></i></a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'auth:login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+<div class="container">
+    {% block content %} {% endblock %}
 
-		<div class="clr"></div>
+    <div class="clr"></div>
 
-	</div>
+</div>
 
-      <div class="footer">
-        <div class="clearfix">
-            <div class="text-footer">
-                <h3>контакты</h3>
-            </div>
-            <div class="text-footer">
-                <h3>полезная информация</h3>
-            </div>
-            <div class="text-footer clearfix">
-                <h3>Оставайтесь на связи</h3>
-                <p>Подписаться на новости и рассылки</p>
-                <form>
-                    <input type="email" name="email" placeholder="ваш email">
-                    <a href="#"><i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i></a>
-                </form>
-            </div>
+<div class="footer">
+    <div class="clearfix">
+        <div class="text-footer">
+            <h3>контакты</h3>
         </div>
-        <p class="small">&copy; GB 2017</p>
-        <div class="social">
-            <a href="#" class="social1"></a>
-            <a href="#" class="social2"></a>
-            <a href="#" class="social3"></a>
-            <a href="#" class="social4"></a>
+        <div class="text-footer">
+            <h3>полезная информация</h3>
         </div>
-        <p class="small">Положения &amp; Условия  /  Конфиденциальность &amp; Cookies</p>
+        <div class="text-footer clearfix">
+            <h3>Оставайтесь на связи</h3>
+            <p>Подписаться на новости и рассылки</p>
+            <form>
+                <input type="email" name="email" placeholder="ваш email">
+                <a href="#"><i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i></a>
+            </form>
+        </div>
     </div>
+    <p class="small">&copy; GB 2017</p>
+    <div class="social">
+        <a href="#" class="social1"></a>
+        <a href="#" class="social2"></a>
+        <a href="#" class="social3"></a>
+        <a href="#" class="social4"></a>
+    </div>
+    <p class="small">Положения &amp; Условия / Конфиденциальность &amp; Cookies</p>
+</div>
 
 </body>
 </html>

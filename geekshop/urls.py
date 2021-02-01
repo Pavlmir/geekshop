@@ -24,8 +24,9 @@ from mainapp.views import index, contact
 urlpatterns = [
     path('', index, name='index'),
     path('admin/', admin.site.urls),
-    path('products/', include('mainapp.urls', namespace='products')),
     path('contact/', contact, name='contact'),
+    path('products/', include('mainapp.urls', namespace='products')),
+    path('auth/', include('authapp.urls', namespace='auth')),
 ]
 
 if settings.DEBUG:
