@@ -1,10 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
-
 from authapp.forms import UserLoginForm, UserRegisterForm, UserProfileForm
-from authapp.models import User
-
+from basket.models import Basket
 
 def login(request):
     if request.method == 'POST':
@@ -41,6 +39,7 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
+
 
 def profile(request):
     if request.method == 'POST':
