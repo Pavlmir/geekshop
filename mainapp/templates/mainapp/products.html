@@ -9,7 +9,6 @@
 					<li><a href="{% url 'index' %}">домой</a></li>
 					<li><a href="{% url 'products:index' %}" class="active">продукты</a></li>
 					<li><a href="{% url 'contact' %}">контакты</a></li>
-
 				</ul>
 				<a href="#" class="search"></a>
                 <a href="#" class="basket"></a>
@@ -77,7 +76,7 @@
 				<div class="related-products clearfix">
 					{% for product in products %}
 					    <div class="block">
-							<a href="#"><img src="/media/{{ product.image }}" alt="">
+							<a href="{% url 'baskets:basket_add' product.id  %}"><img src="/media/{{ product.image }}" alt="">
 								<div class="text">
 									<img src="{% static 'img/icon-hover.png' %}" alt="img">
 									<h3>{{ product.category.name }}</h3>

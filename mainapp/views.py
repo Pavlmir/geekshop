@@ -11,7 +11,7 @@ def index(request):
 
 def products(request):
     # module_dir = os.path.dirname(__file__)
-    # with open(os.path.join(module_dir, 'fixtures/products.json'), "r", encoding='UTF-8') as f:
+    # with open(os.path.join(module_dir, 'fixtures/Product.json'), "r", encoding='UTF-8') as f:
     #     to_python = json.loads(f.read())
     context = {'title': 'Товары',
                'products': Product.objects.all(),

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="hero">
 			<div class="header clearfix">
-				<a href="index.html" class="logo"></a>
+				<a href="{% url 'index' %}" class="logo"></a>
 				<ul class="menu">
 					<li><a href="{% url 'index' %}">домой</a></li>
 					<li><a href="{% url 'products:index' %}">продукты</a></li>
