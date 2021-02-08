@@ -129,3 +129,5 @@ AUTH_USER_MODEL = 'authapp.User'
 CSRF_COOKIE_SAMESITE = 'Strict'
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_AGE = None
+
+LOGIN_URL = '/auth/login/'
