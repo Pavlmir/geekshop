@@ -4,10 +4,11 @@ from mainapp.models import ProductCategory, Product
 from django.core.paginator import Paginator
 import json
 import os
+import datetime
 
 
 def index(request):
-    context = {'title': 'Магазин'}
+    context = {'title': 'Магазин', 'date_begin': datetime.datetime.now()}
     return render(request, 'mainapp/index.html', context)
 
 
