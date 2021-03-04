@@ -10,6 +10,11 @@ from basket.models import Basket
 @login_required
 def basket_add(request, product_id):
     # product = get_object_or_404(Product, id=product_id)
+    try:
+        product_id = int(product_id)
+    except Exception as exp:
+        print(f"Wrong input numbers! {exp}")
+        raise exp
     product = Product.objects.get(id=product_id)
     baskets = Basket.objects.filter(user=request.user, product=product)
 
@@ -24,6 +29,11 @@ def basket_add(request, product_id):
 
 @login_required
 def basket_remove(request, id):
+    try:
+        id = int(id)
+    except Exception as exp:
+        print(f"Wrong input numbers! {exp}")
+        raise exp
     basket = Basket.objects.get(id=id)
     basket.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -31,9 +41,14 @@ def basket_remove(request, id):
 
 @login_required
 def basket_edit(request, id, quantity):
-    if request.is_ajax():
+    try:
+        id = int(id)
         quantity = int(quantity)
-        basket = Basket.objects.get(id=int(id))
+    except Exception as exp:
+        print(f"Wrong input numbers! {exp}")
+        raise exp
+    if request.is_ajax():
+        basket = Basket.objects.get(id=id)
         if quantity > 0:
             basket.quantity = quantity
             basket.save()

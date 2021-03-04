@@ -1,13 +1,13 @@
-from django.urls import path
+from django.urls import re_path
 
 from adminapp import views
 
 app_name = 'adminapp'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('admin-users-read/', views.UserListView.as_view(), name='admin_users_read'),
-    path('admin-users-create/', views.UserCreateView.as_view(), name='admin_users_create'),
-    path('admin-users-update/<int:pk>/', views.UserUpdateView.as_view(), name='admin_users_update'),
-    path('admin-users-delete/<int:pk>/', views.UserDeleteView.as_view(), name='admin_users_delete'),
+    re_path(r"^$", views.index, name='index'),
+    re_path(r"^admin-users-read/$", views.UserListView.as_view(), name='admin_users_read'),
+    re_path(r"^admin-users-create/$", views.UserCreateView.as_view(), name='admin_users_create'),
+    re_path(r"^admin-users-update/(?P<pk>\d+)/$", views.UserUpdateView.as_view(), name='admin_users_update'),
+    re_path(r"^admin-users-delete/(?P<pk>\d+)/$", views.UserDeleteView.as_view(), name='admin_users_delete'),
 ]
