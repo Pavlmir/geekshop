@@ -1,3 +1,11 @@
 .idea
 __pycache__/
 db.sqlite3
+db_old1.sqlite3
+.vscode
+
+# geekshop --->
+
+tmp
+
+# <--- geekshop
