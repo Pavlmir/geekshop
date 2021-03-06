@@ -1,24 +1,35 @@
 from django import forms
 
-from authapp.forms import UserRegisterForm, UserProfileForm
-from authapp.models import User
+from authnapp.forms import ShopUserEditForm
+from authnapp.models import ShopUser
+from mainapp.models import Product, ProductCategory
 
 
-class UserAdminRegisterForm(UserRegisterForm):
-    avatar = forms.ImageField(widget=forms.FileInput())
+class ShopUserAdminEditForm(ShopUserEditForm):
+    class Meta:
+        model = ShopUser
+        fields = "__all__"
+
+
+class ProductCategoryEditForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs["class"] = "form-control"
+            field.help_text = ""
 
     class Meta:
-        model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'avatar')
+        model = ProductCategory
+        fields = "__all__"
 
+
+class ProductEditForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(UserAdminRegisterForm, self).__init__(*args, **kwargs)
-        self.fields['avatar'].widget.attrs['class'] = 'custom-file-input'
+        super(ProductEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs["class"] = "form-control"
+            field.help_text = ""
 
-
-class UserAdminProfileForm(UserProfileForm):
-
-    def __init__(self, *args, **kwargs):
-        super(UserAdminProfileForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs['readonly'] = False
-        self.fields['email'].widget.attrs['readonly'] = False
+    class Meta:
+        model = Product
+        fields = "__all__"

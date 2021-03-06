@@ -1,13 +1,7 @@
 from django.contrib import admin
-from .models import ProductCategory, Product
+
+from .models import Contact, Product, ProductCategory
 
 admin.site.register(ProductCategory)
-
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'quantity')
-    fields = ('name', 'image', 'description', 'short_description', ('price', 'quantity'), 'category')
-    readonly_fields = ('short_description',)
-    ordering = ('price',)
-    search_fields = ('name', 'category__name')
+admin.site.register(Product)
+admin.site.register(Contact)

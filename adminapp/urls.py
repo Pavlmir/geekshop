@@ -1,13 +1,24 @@
 from django.urls import re_path
 
-from adminapp import views
+import adminapp.views as adminapp
 
-app_name = 'adminapp'
+from .apps import AdminappConfig
+
+app_name = AdminappConfig.name
 
 urlpatterns = [
-    re_path(r"^$", views.index, name='index'),
-    re_path(r"^admin-users-read/$", views.UserListView.as_view(), name='admin_users_read'),
-    re_path(r"^admin-users-create/$", views.UserCreateView.as_view(), name='admin_users_create'),
-    re_path(r"^admin-users-update/(?P<pk>\d+)/$", views.UserUpdateView.as_view(), name='admin_users_update'),
-    re_path(r"^admin-users-delete/(?P<pk>\d+)/$", views.UserDeleteView.as_view(), name='admin_users_delete'),
+    re_path(r"^$", adminapp.admin_main, name="admin_main"),
+    re_path(r"^users/create/$", adminapp.user_create, name="user_create"),
+    re_path(r"^users/read/$", adminapp.UsersListView.as_view(), name="users"),
+    re_path(r"^users/update/(?P<pk>\d+)/$", adminapp.user_update, name="user_update"),
+    re_path(r"^users/delete/(?P<pk>\d+)/$", adminapp.user_delete, name="user_delete"),
+    re_path(r"^categories/create/$", adminapp.ProductCategoryCreateView.as_view(), name="category_create"),
+    re_path(r"^categories/read/$", adminapp.categories, name="categories"),
+    re_path(r"^categories/update/(?P<pk>\d+)/$", adminapp.ProductCategoryUpdateView.as_view(), name="category_update"),
+    re_path(r"^categories/delete/(?P<pk>\d+)/$", adminapp.ProductCategoryDeleteView.as_view(), name="category_delete"),
+    re_path(r"^products/create/category/(?P<pk>\d+)/$", adminapp.product_create, name="product_create"),
+    re_path(r"^products/read/category/(?P<pk>\d+)/$", adminapp.products, name="products"),
+    re_path(r"^products/read/(?P<pk>\d+)/$", adminapp.ProductDetailView.as_view(), name="product_read"),
+    re_path(r"^products/update/(?P<pk>\d+)/$", adminapp.product_update, name="product_update"),
+    re_path(r"^products/delete/(?P<pk>\d+)/$", adminapp.product_delete, name="product_delete"),
 ]
