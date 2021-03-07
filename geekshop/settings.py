@@ -145,6 +145,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Set login path:
 #   https://docs.djangoproject.com/en/2.2/ref/settings/#login-url
 LOGIN_URL = "authnapp:login"
+LOGOUT_URL = "authnapp:logout"
+LOGIN_REDIRECT_URL = "/"
 
 DOMAIN_NAME = "http://localhost:8000"
 
@@ -173,6 +175,7 @@ EMAIL_FILE_PATH = "tmp/email-messages/"
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "social_core.backends.vk.VKOAuth2",
+    "social_core.backends.github.GithubOAuth2",
 )
 
 # SOCIAL_AUTH_AUTHENTICATION_BACKENDS = ("social_core.backends.vk.VKOAuth2",)
@@ -190,6 +193,12 @@ with open("tmp/secrets/vk.json", "r") as f:
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = VK["SOCIAL_AUTH_VK_OAUTH2_APPID"]
 SOCIAL_AUTH_VK_OAUTH2_SECRET = VK["SOCIAL_AUTH_VK_OAUTH2_KEY"]
+
+with open("tmp/secrets/github.json", "r") as f:
+    GITHUB = json.load(f)
+
+SOCIAL_AUTH_GITHUB_KEY = GITHUB["SOCIAL_AUTH_GITHUB_KEY"]
+SOCIAL_AUTH_GITHUB_SECRET = GITHUB["SOCIAL_AUTH_GITHUB_SECRET"]
 
 LOGIN_ERROR_URL = "/"
 
