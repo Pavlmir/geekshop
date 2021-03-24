@@ -44,11 +44,10 @@ INSTALLED_APPS = [
 ]
 
 if DEBUG:
-    import mimetypes
-    mimetypes.add_type("application/javascript", ".js", True)
     INSTALLED_APPS.extend([
         "debug_toolbar",
         "template_profiler_panel",
+        "django_extensions",
     ])
 
 # Auth model
